@@ -52,17 +52,17 @@ target01 | SUCCESS => {
 
 Voici la liste des commandes que j'ai utilisé :
 ```
-  vagrant up
+  $ vagrant up
 ```
 ```
-  vagrant ssh control
+  $ vagrant ssh control
 ```
 ```
-  type ansible
+  $ type ansible
 ansible is /usr/bin/ansible
 ```
 ```
-  sudo vim /etc/hosts
+  $ sudo vim /etc/hosts
 ```
 ```
 127.0.0.1      localhost.localdomain  localhost
@@ -72,19 +72,19 @@ ansible is /usr/bin/ansible
 192.168.56.40  target03.sandbox.lan   target03
 ```
 ```
-  for HOST in target01 target02 target03; do ping -c 1 -q $HOST; done
+  $ for HOST in target01 target02 target03; do ping -c 1 -q $HOST; done
 ```
 ```
-  ssh-keyscan -t rsa target01 target02 target03 >> .ssh/known_hosts
+  $ ssh-keyscan -t rsa target01 target02 target03 >> .ssh/known_hosts
 ```
 Test de la connexion ssh :
 ```
-  ssh target01
-  ssh target02
-  ssh target03
+  $ ssh target01
+  $ ssh target02
+  $ ssh target03
 ```
 ```
-  ssh-keygen
+  $ ssh-keygen
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/vagrant/.ssh/id_rsa): 
 Enter passphrase (empty for no passphrase): 
@@ -107,7 +107,7 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 ```
-  ssh-copy-id vagrant@target01
+  $ ssh-copy-id vagrant@target01
 /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/vagrant/.ssh/id_rsa.pub"
 /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
 /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
@@ -119,7 +119,7 @@ Now try logging into the machine, with:   "ssh 'vagrant@target01'"
 and check to make sure that only the key(s) you wanted were added.
 ```
 ```
-  ssh-copy-id vagrant@target02
+  $ ssh-copy-id vagrant@target02
 /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/vagrant/.ssh/id_rsa.pub"
 /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
 /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
@@ -131,7 +131,7 @@ Now try logging into the machine, with:   "ssh 'vagrant@target02'"
 and check to make sure that only the key(s) you wanted were added.
 ```
 ```
-  ssh-copy-id vagrant@target03
+  $ ssh-copy-id vagrant@target03
 /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/vagrant/.ssh/id_rsa.pub"
 /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
 /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
@@ -144,7 +144,7 @@ and check to make sure that only the key(s) you wanted were added.
 ```
 Voici le résultat du ping ansible :
 ```
-  ansible all -i target01,target02,target03 -m ping
+  $ ansible all -i target01,target02,target03 -m ping
 target01 | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python3"
