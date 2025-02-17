@@ -213,12 +213,73 @@ $ curl rocky
 </html>
 ```
 
-Voici le fichier ansible pour rocky :
+Voici le fichier ansible pour suse :
 ```
+---  # suse-01.yml
+
+- hosts: suse
+
+  tasks:
+
+    - name: Install Apache
+      zypper:
+        name: apache2
+        state: present
+
+    - name: Start & enable Apache
+      service:
+        name: apache2
+        state: started
+        enabled: true
+
+    - name: Install custom web page
+      copy:
+        dest: /srv/www/htdocs/index.html
+        mode: 0644
+        content: |
+          <!doctype html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <title>Test</title>
+            </head>
+            <body>
+              <h1>Apache web server running on openSUSE</h1>
+            </body>
+          </html>
 ```
-Voici le résultat pour rocky :
+Voici le résultat pour suse :
 ```
+$ ansible-playbook apache-suse.yml 
+
+PLAY [suse] *********************************************************************
+
+TASK [Gathering Facts] **********************************************************
+ok: [suse]
+
+TASK [Install Apache] ***********************************************************
+changed: [suse]
+
+TASK [Start & enable Apache] ****************************************************
+changed: [suse]
+
+TASK [Install custom web page] **************************************************
+changed: [suse]
+
+PLAY RECAP **********************************************************************
+suse                       : ok=4    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
-Voici le résultat du curl sur la machine rocky :
+Voici le résultat du curl sur la machine suse :
 ```
+$ curl suse
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+  </head>
+  <body>
+    <h1>Apache web server running on openSUSE</h1>
+  </body>
+</html>
 ```
