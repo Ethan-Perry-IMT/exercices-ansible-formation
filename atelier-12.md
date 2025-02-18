@@ -44,6 +44,9 @@ Voici le playbook chrony.yml :
 
   handlers:
     - name: Restart chronyd
+      service:
+        name: chronyd
+        state: restarted
 ```
 Voici le résultat de l'exécution de ce playbook :
 ```
